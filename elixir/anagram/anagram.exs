@@ -1,5 +1,12 @@
 defmodule Anagram do
 
+  @doc """
+  Tests a word agains a list to find all anagrams inside that list
+
+  iex> Anagram.match "listen", %w(enlists google inlets banana)
+  ["inlets"]
+  """
+
   def match(word, list) do
     do_match(word, list, [])
   end

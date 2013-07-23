@@ -4,6 +4,8 @@ ExUnit.start
 defmodule AnagramTest do
   use ExUnit.Case
 
+  doctest Anagram
+
   test "no matches" do
     matches = Anagram.match "diaper", ["hello", "world", "zombies", "pants"]
     assert matches == []
