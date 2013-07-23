@@ -4,7 +4,7 @@ defmodule Anagram do
     do_match(word, list, [])
   end
 
-  defp do_match(word, [], acc), do: Enum.reverse(acc)
+  defp do_match(_word, [], acc), do: Enum.reverse(acc)
   defp do_match(word, [head|tail], acc) do
     cond do
       compare_words(word, head) -> do_match(word, tail, [head|acc])
