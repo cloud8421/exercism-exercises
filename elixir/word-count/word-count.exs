@@ -9,7 +9,7 @@ defmodule Words do
   def count(text) do
     acc = HashDict.new
     String.downcase(text)
-    |> String.split
+    |> filter_non_words
     |> do_count(acc)
   end
 
@@ -19,12 +19,11 @@ defmodule Words do
     do_count(tail, entry)
   end
 
-  defp add_or_edit_entry(word, acc) do
-    Regex.replace(%r/\W/, word, "") |> do_add_or_edit_entry(acc)
+  defp filter_non_words(text) do
+    Regex.scan(%r/\w+/, text)
   end
 
-  defp do_add_or_edit_entry("", acc), do: acc
-  defp do_add_or_edit_entry(word, acc) do
+  defp add_or_edit_entry(word, acc) do
     HashDict.update(acc, word, 1, &1 + 1)
   end
 
