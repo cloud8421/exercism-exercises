@@ -19,18 +19,13 @@ defmodule Words do
     do_count(tail, entry)
   end
 
-  defp increment_count(nil), do: 1
-  defp increment_count(integer), do: integer + 1
-
   defp add_or_edit_entry(word, acc) do
     Regex.replace(%r/\W/, word, "") |> do_add_or_edit_entry(acc)
   end
 
   defp do_add_or_edit_entry("", acc), do: acc
   defp do_add_or_edit_entry(word, acc) do
-    current_count = HashDict.get(acc, word) |> increment_count
-    HashDict.put(acc, word, current_count)
+    HashDict.update(acc, word, 1, &1 + 1)
   end
-
 
 end
